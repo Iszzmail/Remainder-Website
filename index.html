@@ -11,69 +11,95 @@
     <div class="container">
         <h1><span class="zap">⚡</span> Comic Task Notifier <span class="zap">⚡</span></h1>
 
-        <section class="add-task-section">
-            <h2>POW! Add a New Task!</h2>
-            <form id="task-form">
-                <div class="form-group">
-                    <label for="task-name">Task Name:</label>
-                    <input type="text" id="task-name" required placeholder="e.g., Drink Water">
-                </div>
+        <div class="show-form-button-container">
+            <button id="show-form-btn" class="btn add-btn">💥 Add New Task 💥</button>
+        </div>
 
-                <div class="form-group">
-                    <label>Reminder Times:</label>
-                    <div id="time-inputs-container">
-                        <div class="time-input-group">
-                            <input type="time" class="task-time-input" required>
-                            </div>
+        <div id="add-task-container" class="hidden"> <section class="add-task-section">
+                <h2>POW! Add a New Task!</h2>
+                <form id="task-form">
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <div class="category-options">
+                            <label>
+                                <input type="radio" name="task-category" value="personal" checked> Personal
+                            </label>
+                            <label>
+                                <input type="radio" name="task-category" value="work"> Work
+                            </label>
+                        </div>
                     </div>
-                    <button type="button" id="add-time-btn" class="btn time-btn">+</button>
-                </div>
 
-                <div class="form-group">
-                    <label for="task-recurrence">Remind Me:</label>
-                    <select id="task-recurrence">
-                        <option value="none">Just Once</option>
-                        <option value="daily" selected>Every Day</option>
+                    <div class="form-group">
+                        <label for="task-name">Task Name:</label>
+                        <input type="text" id="task-name" required placeholder="e.g., Drink Water">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reminder Times:</label>
+                        <div id="time-inputs-container">
+                            <div class="time-input-group">
+                                <input type="time" class="task-time-input" required>
+                            </div>
+                        </div>
+                        <button type="button" id="add-time-btn" class="btn time-btn">+</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="task-recurrence">Remind Me:</label>
+                        <select id="task-recurrence">
+                            <option value="none">Just Once</option>
+                            <option value="daily" selected>Every Day</option>
                         </select>
-                </div>
-                 <div class="form-group">
-                    <label for="task-repeat">Remind Again if Not Done (minutes):</label>
-                    <input type="number" id="task-repeat" min="0" placeholder="0 for no repeats">
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-repeat">Remind Again if Not Done (minutes):</label>
+                        <input type="number" id="task-repeat" min="0" placeholder="0 for no repeats">
+                    </div>
 
-                <div class="form-group">
-                    <label for="task-sound">Notification Sound:</label>
-                    <select id="task-sound">
-                        <option value="none" selected>-- No Sound --</option>
-                        <option value="beep.wav">Simple Beep</option>
-                        <option value="chime.mp3">Chime</option>
-                        <option value="ding.mp3">Bell Ding</option>
-                        <option value="drop.wav">Water Drop</option>
-                        <option value="click.wav">Sharp Click</option>
-                        <option value="digital.mp3">Digital Alarm</option>
-                        <option value="pow.wav">POW!</option>
-                        <option value="harp.mp3">Gentle Harp</option>
-                        <option value="ascend.wav">Ascending Tones</option>
-                        <option value="pluck.wav">Synth Pluck</option>
+                    <div class="form-group">
+                        <label for="task-sound">Notification Sound:</label>
+                        <select id="task-sound">
+                            <option value="none" selected>-- No Sound --</option>
+                            <option value="beep.wav">Simple Beep</option>
+                            <option value="chime.mp3">Chime</option>
+                            <option value="ding.mp3">Bell Ding</option>
+                            <option value="drop.wav">Water Drop</option>
+                            <option value="click.wav">Sharp Click</option>
+                            <option value="digital.mp3">Digital Alarm</option>
+                            <option value="pow.wav">POW!</option>
+                            <option value="harp.mp3">Gentle Harp</option>
+                            <option value="ascend.wav">Ascending Tones</option>
+                            <option value="pluck.wav">Synth Pluck</option>
                         </select>
-                </div>
+                    </div>
 
-                <div class="form-group">
-                    <label for="task-color">Task Color:</label>
-                    <input type="color" id="task-color" value="#3498db"> </div>
-                 <div class="form-group">
-                    <label for="task-image">Image URL (Optional):</label>
-                    <input type="url" id="task-image" placeholder="http://example.com/image.png">
-                </div>
+                    <div class="form-group">
+                        <label for="task-color">Task Color:</label>
+                        <input type="color" id="task-color" value="#3498db">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-image">Image URL (Optional):</label>
+                        <input type="url" id="task-image" placeholder="http://example.com/image.png">
+                    </div>
 
-                <button type="submit" class="btn add-btn">KABOOM! Add Task</button>
-            </form>
-        </section>
-
-        <section class="task-list-section">
-            <h2>Your Super Missions!</h2>
-            <div id="task-list">
+                    <div class="form-actions form-buttons"> <button type="submit" class="btn add-btn">KABOOM! Add Task</button>
+                         <button type="button" id="cancel-add-btn" class="btn delete-btn">Cancel</button> </div>
+                </form>
+            </section>
+        </div> <section class="task-list-section">
+             <div id="task-list">
+                <div class="category-section">
+                     <h2>🏠 Personal Missions</h2>
+                     <div id="personal-tasks" class="task-category-list">
+                         </div>
                 </div>
+                 <div class="category-section">
+                     <h2>💼 Work Missions</h2>
+                     <div id="work-tasks" class="task-category-list">
+                          </div>
+                </div>
+            </div>
         </section>
     </div>
 

@@ -1,349 +1,150 @@
 /* style.css */
 
 /* Basic Reset & Font */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth; /* Smooth scrolling for links/focus */
-}
-
-body {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 20px;
-    line-height: 1.6;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: sans-serif; background-color: #f0f0f0; color: #333; padding: 20px; line-height: 1.6; }
 
 /* Comic Font */
-h1, h2, .btn, .form-group label {
-    font-family: 'Bangers', cursive;
-    letter-spacing: 2px;
-}
-
-h1, h2, .btn {
-    color: #e74c3c;
-    text-shadow: 2px 2px #f1c40f;
-}
-
-.form-group label {
-    color: #2c3e50;
-    text-shadow: none; /* Labels don't need the heavy shadow */
-}
+h1, h2, .btn, .form-group label { font-family: 'Bangers', cursive; letter-spacing: 2px; }
+h1, h2, .btn { color: #e74c3c; text-shadow: 2px 2px #f1c40f; }
+.form-group label { color: #2c3e50; text-shadow: none; }
+h2 { font-size: 2em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px dashed #000; }
+.category-section h2 { font-size: 1.8em; margin-top: 30px; margin-bottom: 15px; border-bottom-style: solid; border-bottom-width: 2px; border-color: #ccc; } /* Category Headings */
 
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 30px;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.7);
-    border-radius: 10px;
-}
+.container { max-width: 800px; margin: 20px auto; background-color: #fff; padding: 30px; border: 4px solid #000; box-shadow: 8px 8px 0px rgba(0,0,0,0.7); border-radius: 10px; }
+h1 { text-align: center; font-size: 3em; margin-bottom: 30px; }
+.zap { color: #f1c40f; display: inline-block; transform: rotate(-15deg); transition: transform 0.2s ease-in-out; }
+h1:hover .zap { transform: scale(1.2) rotate(-25deg); }
+h1 .zap:last-child { transform: rotate(15deg); }
+h1:hover .zap:last-child { transform: scale(1.2) rotate(25deg); }
 
-h1 {
+/* 'Add New Task' Button Styling */
+.show-form-button-container {
     text-align: center;
-    font-size: 3em;
     margin-bottom: 30px;
 }
-
-.zap {
-    color: #f1c40f;
-    display: inline-block;
-    transform: rotate(-15deg);
-    transition: transform 0.2s ease-in-out; /* Smoothness */
+#show-form-btn {
+    padding: 15px 30px;
+    font-size: 1.5em;
+    background-color: #f39c12; /* Orange */
+    border-radius: 25px;
 }
-h1:hover .zap {
-    transform: scale(1.2) rotate(-25deg); /* Example animation */
-}
-
-h1 .zap:last-child {
-     transform: rotate(15deg);
-}
-h1:hover .zap:last-child {
-    transform: scale(1.2) rotate(25deg);
+#show-form-btn:hover {
+    background-color: #e67e22;
 }
 
 
-h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    border-bottom: 3px dashed #000;
-    padding-bottom: 10px;
+/* Form Section Styling & Visibility Transition */
+#add-task-container {
+    /* Styles for smooth transition */
+    max-height: 1000px; /* Adjust if form is taller */
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, margin-bottom 0.6s ease-in-out, padding 0.6s ease-in-out, border-width 0.1s linear 0.5s;
+    margin-bottom: 40px; /* Initial margin */
 }
-
-/* Form Styling */
 .add-task-section {
-    margin-bottom: 40px;
     background-color: #ecf0f1;
     padding: 20px;
     border: 3px solid #000;
     border-radius: 5px;
 }
+/* Styles when form is hidden */
+#add-task-container.hidden {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    padding-top: 0; /* Required for transition */
+    padding-bottom: 0; /* Required for transition */
+    overflow: hidden; /* Ensure content clipped */
+    border-width: 0; /* Hide border instantly when height is 0 */
+    transition: max-height 0.6s ease-in-out, opacity 0.5s ease-in-out, margin-bottom 0.6s ease-in-out, padding 0.6s ease-in-out, border-width 0s linear 0s; /* Change border transition */
 
-.form-group {
-    margin-bottom: 15px;
+}
+/* Ensure section inside has padding removed instantly when hiding */
+#add-task-container.hidden .add-task-section {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 5px; letter-spacing: 1px; }
+
+/* Category Radio Buttons */
+.category-options label {
+    display: inline-block; /* Side-by-side */
+    margin-right: 20px;
+    font-family: sans-serif; /* Normal font for options */
+    font-weight: normal;
+    letter-spacing: normal;
+    color: #333;
+    text-shadow: none;
+    cursor: pointer;
 }
+.category-options input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 
 /* Input Styling - Rounded */
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group input[type="url"],
 .form-group select,
-.form-group input[type="time"] {
-    width: 100%;
-    padding: 10px 15px;
-    border: 3px solid #000;
-    border-radius: 15px; /* Rounded corners */
-    font-size: 1em;
-    font-family: sans-serif;
-    line-height: 1.4;
-    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smoothness */
-}
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #3498db; /* Highlight on focus */
-    box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1), 0 0 0 3px rgba(52, 152, 219, 0.5);
-}
-
+.form-group input[type="time"] { width: 100%; padding: 10px 15px; border: 3px solid #000; border-radius: 15px; font-size: 1em; font-family: sans-serif; line-height: 1.4; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #3498db; box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1), 0 0 0 3px rgba(52, 152, 219, 0.5); }
 
 /* Select Dropdown Arrow */
-.form-group select {
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 10px auto;
-    padding-right: 40px;
-    cursor: pointer;
-}
+.form-group select { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 15px center; background-size: 10px auto; padding-right: 40px; cursor: pointer; }
+.form-group input[type="color"] { padding: 0; height: 40px; width: 50px; vertical-align: middle; border: 3px solid #000; border-radius: 8px; cursor: pointer; transition: transform 0.2s ease; }
+.form-group input[type="color"]:hover { transform: scale(1.1); }
 
+/* Time Inputs */
+#time-inputs-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px; }
+.time-input-group { display: flex; align-items: center; gap: 10px; }
+.time-input-group input[type="time"] { flex-grow: 1; width: auto; }
 
-.form-group input[type="color"] {
-    padding: 0;
-    height: 40px;
-    width: 50px;
-    vertical-align: middle;
-    border: 3px solid #000;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease; /* Smoothness */
-}
-.form-group input[type="color"]:hover {
-    transform: scale(1.1);
-}
+/* Buttons */
+.btn { display: inline-block; padding: 10px 20px; border: 3px solid #000; border-radius: 15px; background-color: #2ecc71; color: #fff; text-shadow: 1px 1px #000; font-size: 1.2em; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease; text-align: center; font-family: 'Bangers', cursive; }
+.btn:hover { transform: translateY(-2px) scale(1.03); box-shadow: 6px 6px 0px rgba(0,0,0,0.7); }
+.btn:active { transform: translateY(1px) scale(0.98); box-shadow: 2px 2px 0px rgba(0,0,0,0.7); }
 
+/* Specific Button Colors/Styles */
+.form-buttons { display: flex; gap: 15px; margin-top: 20px; } /* Align form buttons */
+.form-buttons .btn { flex-grow: 1; } /* Make form buttons share width */
 
-/* Time Input Specific Styling */
-#time-inputs-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.time-input-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.time-input-group input[type="time"] {
-    flex-grow: 1;
-    width: auto;
-}
-
-/* Button Styling - Rounded */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 3px solid #000;
-    border-radius: 15px; /* Rounded buttons */
-    background-color: #2ecc71;
-    color: #fff;
-    text-shadow: 1px 1px #000;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease; /* Smoothness */
-    text-align: center;
-    font-family: 'Bangers', cursive;
-}
-
-.btn:hover {
-    transform: translateY(-2px) scale(1.03); /* Lift and slightly enlarge */
-    box-shadow: 6px 6px 0px rgba(0,0,0,0.7);
-}
-
-.btn:active {
-     transform: translateY(1px) scale(0.98); /* Push effect */
-     box-shadow: 2px 2px 0px rgba(0,0,0,0.7);
-}
-
-/* Specific Button Colors */
-.add-btn {
-    width: 100%;
-    margin-top: 10px;
-    background-color: #3498db;
-}
+.add-btn { background-color: #3498db; }
 .add-btn:hover { background-color: #2980b9; }
-
-.complete-btn {
-    background-color: #2ecc71;
-    flex-grow: 1;
-}
+.complete-btn { background-color: #2ecc71; flex-grow: 1; }
 .complete-btn:hover { background-color: #27ae60; }
-
-.delete-btn {
-    background-color: #e74c3c;
-}
+.delete-btn { background-color: #e74c3c; }
 .delete-btn:hover { background-color: #c0392b; }
-
-
-/* Add/Remove Time Buttons */
-.time-btn {
-    padding: 5px 10px;
-    font-size: 1em;
-    line-height: 1;
-    min-width: 40px;
-    background-color: #95a5a6;
-    color: #fff;
-    border: 2px solid #000;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
+.time-btn { padding: 5px 10px; font-size: 1em; line-height: 1; min-width: 40px; background-color: #95a5a6; color: #fff; border: 2px solid #000; border-radius: 10px; flex-shrink: 0; }
 .time-btn:hover { background-color: #7f8c8d; }
-
-.remove-time-btn {
-    background-color: #e74c3c;
-}
+.remove-time-btn { background-color: #e74c3c; }
 .remove-time-btn:hover { background-color: #c0392b; }
 
 
 /* Task List Styling */
-.task-list-section {
-    margin-top: 30px;
-}
+.task-list-section { margin-top: 30px; }
+#task-list { margin-top: 10px; } /* Reduced top margin */
+.task-category-list { display: grid; gap: 25px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+@keyframes taskAppear { from { opacity: 0; transform: scale(0.9) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-#task-list {
-    margin-top: 20px;
-    display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-}
-
-/* Add animation for task appearance */
-@keyframes taskAppear {
-  from { opacity: 0; transform: scale(0.9) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.task-item {
-    background-color: #fff;
-    padding: 15px 20px;
-    border: 3px solid #000;
-    border-radius: 15px; /* Rounded tasks */
-    position: relative;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, background-color 0.3s ease; /* Smoothness */
-    border-left: 10px solid var(--task-color, #3498db);
-    animation: taskAppear 0.3s ease-out forwards; /* Apply appearance animation */
-}
-
-.task-item:hover {
-    transform: translateY(-5px) scale(1.02); /* Lift effect */
-    box-shadow: 7px 7px 0px rgba(0,0,0,0.6);
-}
-
-.task-item h3 {
-    margin-bottom: 10px;
-    font-family: 'Bangers', cursive;
-    color: #333;
-    text-shadow: none;
-    font-size: 1.5em;
-    word-wrap: break-word;
-}
-
-.task-item p {
-    margin-bottom: 8px;
-    font-size: 0.95em;
-    color: #555;
-    font-family: sans-serif;
-}
-
-.task-item p strong {
-    color: #000;
-}
-
-.task-item img {
-    max-width: 50px;
-    height: auto;
-    float: right;
-    margin-left: 10px;
-    border: 2px solid #000;
-    border-radius: 4px;
-}
-
-/* Time badges */
-.task-item .times-list {
-    font-size: 0.9em;
-    color: #666;
-    margin-left: 0;
-    list-style: none;
-    padding-left: 0;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.task-item .times-list li {
-    padding: 2px 6px;
-    background-color: #eee;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-family: monospace;
-    font-size: 0.95em;
-}
-
-.task-actions {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-/* Completed tasks */
-.task-item.completed {
-    opacity: 0.5; /* More faded */
-    background-color: #bdc3c7;
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
-    border-left-color: #7f8c8d; /* Grey left border */
-}
-
-/* Disabled complete button */
-.task-item .complete-btn:disabled {
-    background-color: #95a5a6;
-    cursor: not-allowed; /* Better cursor */
-    opacity: 0.6;
-    color: #eee;
-    text-shadow: none;
-    transform: none; /* Prevent hover/active effects */
-    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
-}
-
-/* --- End of CSS --- */
+.task-item { background-color: #fff; padding: 15px 20px; border: 3px solid #000; border-radius: 15px; position: relative; box-shadow: 4px 4px 0px rgba(0,0,0,0.5); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, background-color 0.3s ease; border-left: 10px solid var(--task-color, #3498db); animation: taskAppear 0.3s ease-out forwards; }
+.task-item:hover { transform: translateY(-5px) scale(1.02); box-shadow: 7px 7px 0px rgba(0,0,0,0.6); }
+.task-item h3 { margin-bottom: 10px; font-family: 'Bangers', cursive; color: #333; text-shadow: none; font-size: 1.5em; word-wrap: break-word; }
+.task-item p { margin-bottom: 8px; font-size: 0.95em; color: #555; font-family: sans-serif; }
+.task-item p strong { color: #000; }
+.task-item img { max-width: 50px; height: auto; float: right; margin-left: 10px; border: 2px solid #000; border-radius: 4px; }
+.task-item .times-list { font-size: 0.9em; color: #666; margin-left: 0; list-style: none; padding-left: 0; margin-top: 5px; margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 5px; }
+.task-item .times-list li { padding: 2px 6px; background-color: #eee; border-radius: 8px; border: 1px solid #ccc; font-family: monospace; font-size: 0.95em; }
+.task-actions { margin-top: 15px; display: flex; gap: 10px; }
+.task-item.completed { opacity: 0.5; background-color: #bdc3c7; box-shadow: 2px 2px 0px rgba(0,0,0,0.3); border-left-color: #7f8c8d; }
+.task-item .complete-btn:disabled { background-color: #95a5a6; cursor: not-allowed; opacity: 0.6; color: #eee; text-shadow: none; transform: none; box-shadow: 2px 2px 0px rgba(0,0,0,0.3); }
